@@ -1,51 +1,95 @@
 import Link from "next/link";
-
-import { LatestPost } from "@/app/_components/post";
-import { HydrateClient, api } from "@/trpc/server";
+import { HydrateClient } from "@/trpc/server";
+import { Navigation } from "@/components/layout/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
-	const hello = await api.post.hello({ text: "from tRPC" });
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
 
-	void api.post.getLatest.prefetch();
+	if (session) {
+		redirect("/dashboard");
+	}
 
 	return (
 		<HydrateClient>
-			<main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-				<div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-					<h1 className="font-extrabold text-5xl tracking-tight sm:text-[5rem]">
-						Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-					</h1>
-					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-						<Link
-							className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-							href="https://create.t3.gg/en/usage/first-steps"
-							target="_blank"
-						>
-							<h3 className="font-bold text-2xl">First Steps →</h3>
-							<div className="text-lg">
-								Just the basics - Everything you need to know to set up your
-								database and authentication.
-							</div>
-						</Link>
-						<Link
-							className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-							href="https://create.t3.gg/en/introduction"
-							target="_blank"
-						>
-							<h3 className="font-bold text-2xl">Documentation →</h3>
-							<div className="text-lg">
-								Learn more about Create T3 App, the libraries it uses, and how
-								to deploy it.
-							</div>
-						</Link>
-					</div>
-					<div className="flex flex-col items-center gap-2">
-						<p className="text-2xl text-white">
-							{hello ? hello.greeting : "Loading tRPC query..."}
+			<Navigation />
+			<main className="container mx-auto px-4 py-12">
+				<div className="flex flex-col items-center justify-center gap-12 min-h-[calc(100vh-8rem)]">
+					{/* Hero Section */}
+					<div className="text-center space-y-4">
+						<div className="flex items-center justify-center gap-3 mb-4">
+							<span className="text-6xl animate-bounce">🐝</span>
+							<h1 className="font-extrabold text-5xl sm:text-7xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+								Pamatováček
+							</h1>
+							<span className="text-6xl animate-bounce delay-150">🍯</span>
+						</div>
+						<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+							Your bee-utiful task manager! 🌸 Sweet reminders with cute animal friends
 						</p>
 					</div>
 
-					<LatestPost />
+					{/* Feature Cards */}
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+						<Card className="border-2 hover:border-primary transition-colors">
+							<CardHeader>
+								<div className="text-4xl mb-2">🐝</div>
+								<CardTitle>Bee Organized</CardTitle>
+								<CardDescription>
+									Create tasks and let our busy bees remind you at the perfect time
+								</CardDescription>
+							</CardHeader>
+						</Card>
+
+						<Card className="border-2 hover:border-secondary transition-colors">
+							<CardHeader>
+								<div className="text-4xl mb-2">🦋</div>
+								<CardTitle>Group Hives</CardTitle>
+								<CardDescription>
+									Work together with your friends in shared task groups
+								</CardDescription>
+							</CardHeader>
+						</Card>
+
+						<Card className="border-2 hover:border-accent transition-colors">
+							<CardHeader>
+								<div className="text-4xl mb-2">🐛</div>
+								<CardTitle>Earn Honey Coins</CardTitle>
+								<CardDescription>
+									Complete tasks to collect sweet rewards and unlock features
+								</CardDescription>
+							</CardHeader>
+						</Card>
+					</div>
+
+					{/* CTA Buttons */}
+					<div className="flex flex-col sm:flex-row gap-4 items-center">
+						<Link href="/auth/sign-up">
+							<Button size="lg" className="text-lg">
+								🌸 Get Started - It's Free!
+							</Button>
+						</Link>
+						<Link href="/auth/sign-in">
+							<Button size="lg" variant="outline" className="text-lg">
+								🐝 Sign In
+							</Button>
+						</Link>
+					</div>
+
+					{/* Bottom decorative elements */}
+					<div className="flex gap-4 text-4xl opacity-50">
+						<span>🌼</span>
+						<span>🌸</span>
+						<span>🌻</span>
+						<span>🌺</span>
+						<span>🌷</span>
+					</div>
 				</div>
 			</main>
 		</HydrateClient>
