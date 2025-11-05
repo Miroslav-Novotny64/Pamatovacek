@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     manifest: "/manifest.json",
     themeColor: "#FFD54F",
     appleWebApp: true,
+    viewport: {
+        width: "device-width",
+        initialScale: 1,
+        maximumScale: 5,
+        userScalable: true,
+    },
 };
 
 const geist = Geist({
@@ -30,6 +36,7 @@ export default function RootLayout({
                 <meta name="theme-color" content="#FFD54F"/>
                 <meta name="apple-mobile-web-app-capable" content="yes"/>
                 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
                 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
                 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
                 <link rel="shortcut icon" href="/favicon.ico" />
@@ -38,7 +45,7 @@ export default function RootLayout({
                 <title></title>
             </head>
             <html lang="en" className={`${geist.variable}`}>
-            <body className="antialiased min-h-screen">
+            <body className="antialiased min-h-screen overflow-x-hidden touch-manipulation">
             <TRPCReactProvider>
                 <Providers>{children}</Providers>
             </TRPCReactProvider>

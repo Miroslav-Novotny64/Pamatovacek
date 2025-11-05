@@ -89,7 +89,7 @@ export function BuyTaskDialog({
 						<Label htmlFor="member">Assign to:</Label>
 						<select
 							id="member"
-							className="w-full mt-2 p-2 border rounded-md"
+							className="w-full mt-2 p-2 sm:p-3 border rounded-md bg-background text-base"
 							value={selectedUserId}
 							onChange={(e) => setSelectedUserId(e.target.value)}
 						>

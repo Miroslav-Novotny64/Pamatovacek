@@ -45,48 +45,49 @@ export function GroupContent({ groupId }: GroupContentProps) {
 	}
 
 	return (
-		<main className="container mx-auto px-4 py-6 md:py-8">
-			<div className="flex items-start gap-2 md:gap-4 mb-6 md:mb-8">
-				<Link href="/dashboard">
-					<Button variant="ghost" size="icon" className="mt-1">
-						<ArrowLeft className="h-5 w-5" />
+		<main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
+			<div className="flex items-start gap-2 mb-4 sm:mb-6 md:mb-8">
+				<Link href="/dashboard" className="shrink-0">
+					<Button variant="ghost" size="icon" className="mt-1 h-9 w-9 sm:h-10 sm:w-10">
+						<ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
 					</Button>
 				</Link>
-				<div className="flex-1">
-					<h1 className="text-2xl md:text-4xl font-bold flex items-center gap-2 break-words">
+				<div className="flex-1 min-w-0">
+					<h1 className="text-xl sm:text-2xl md:text-4xl font-bold flex items-center gap-2 break-words">
 						🐝 {group.name}
 					</h1>
-					<p className="text-sm md:text-base text-muted-foreground mt-1">
-						You have <span className="font-bold text-primary">{group.myCoins} 🍯</span> honey coins • {group.members.length} members
+					<p className="text-xs sm:text-sm md:text-base text-muted-foreground mt-1">
+						You have <span className="font-bold text-primary">{group.myCoins} 🍯</span> • {group.members.length} members
 					</p>
 				</div>
 				<Button
 					variant="outline"
 					size="sm"
 					onClick={() => setShowInvite(true)}
+					className="text-xs sm:text-sm px-2 sm:px-3 shrink-0"
 				>
 					Invite
 				</Button>
 			</div>
 
-			<Tabs defaultValue="today" className="space-y-4 md:space-y-6">
-				<TabsList className="grid w-full grid-cols-2">
-					<TabsTrigger value="today" className="text-xs sm:text-sm">📝 Today's Tasks</TabsTrigger>
-					<TabsTrigger value="shop" className="text-xs sm:text-sm">🛒 Shop</TabsTrigger>
+			<Tabs defaultValue="today" className="space-y-3 sm:space-y-4 md:space-y-6">
+				<TabsList className="grid w-full grid-cols-2 h-auto">
+					<TabsTrigger value="today" className="text-xs sm:text-sm py-2">📝 Today's Tasks</TabsTrigger>
+					<TabsTrigger value="shop" className="text-xs sm:text-sm py-2">🛒 Shop</TabsTrigger>
 				</TabsList>
 
-				<TabsContent value="today" className="space-y-4">
-					<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-						<h2 className="text-xl md:text-2xl font-semibold">Tasks for Today</h2>
+				<TabsContent value="today" className="space-y-3 sm:space-y-4">
+					<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3">
+						<h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Tasks for Today</h2>
 						<Button
 							onClick={() => {
 								setTaskType("learning");
 								setShowCreateTask(true);
 							}}
 							size="sm"
-							className="w-full sm:w-auto"
+							className="w-full sm:w-auto text-xs sm:text-sm"
 						>
-							<Plus className="mr-2 h-4 w-4" />
+							<Plus className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
 							<span className="hidden sm:inline">Add Learning Task</span>
 							<span className="sm:hidden">Add Task</span>
 						</Button>
@@ -94,18 +95,18 @@ export function GroupContent({ groupId }: GroupContentProps) {
 					<TodaysTasks groupId={groupId} />
 				</TabsContent>
 
-				<TabsContent value="shop" className="space-y-4">
-					<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-						<h2 className="text-xl md:text-2xl font-semibold">Task Shop</h2>
+				<TabsContent value="shop" className="space-y-3 sm:space-y-4">
+					<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3">
+						<h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Task Shop</h2>
 						<Button
 							onClick={() => {
 								setTaskType("shop");
 								setShowCreateTask(true);
 							}}
 							size="sm"
-							className="w-full sm:w-auto"
+							className="w-full sm:w-auto text-xs sm:text-sm"
 						>
-							<Plus className="mr-2 h-4 w-4" />
+							<Plus className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
 							<span className="hidden sm:inline">Add Shop Task</span>
 							<span className="sm:hidden">Add Task</span>
 						</Button>

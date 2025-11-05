@@ -145,34 +145,36 @@ export function PushNotificationManager() {
 					Get reminded about your tasks every morning at 8 AM 🌅
 				</CardDescription>
 			</CardHeader>
-			<CardContent className="space-y-4">
-				<div className="flex flex-col gap-3">
+			<CardContent className="space-y-3 sm:space-y-4">
+				<div className="flex flex-col gap-2.5 sm:gap-3">
 					{!isSubscribed ? (
 						<>
 							<Button
 								onClick={subscribeToPush}
 								disabled={isLoading}
-								className="w-full"
+								className="w-full text-sm sm:text-base"
 								size="lg"
 							>
-								<Bell className="mr-2 h-5 w-5" />
+								<Bell className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
 								{isLoading ? 'Enabling...' : 'Enable Notifications 🐝'}
 							</Button>
-							<p className="text-xs text-muted-foreground text-center">
+							<p className="text-xs text-muted-foreground text-center px-2">
 								You'll receive a separate notification for each task due today
 							</p>
 						</>
 					) : (
 						<>
-							<div className="flex items-center justify-center gap-2 p-4 bg-accent/10 rounded-lg border border-accent/20">
-								<span className="text-3xl">✅</span>
-								<span className="font-bold text-accent text-lg">Notifications Enabled!</span>
+							<div className="flex items-center justify-center gap-2 p-3 sm:p-4 bg-accent/10 rounded-lg border border-accent/20">
+								<span className="text-2xl sm:text-3xl">✅</span>
+								<span className="font-bold text-accent text-base sm:text-lg">Notifications Enabled!</span>
 							</div>
 							<div className="grid grid-cols-2 gap-2">
 								<Button
 									onClick={testNotification}
 									disabled={sendTest.isPending}
 									variant="outline"
+									className="text-xs sm:text-sm"
+									size="sm"
 								>
 									{sendTest.isPending ? 'Sending...' : '🧪 Test'}
 								</Button>
@@ -180,8 +182,10 @@ export function PushNotificationManager() {
 									onClick={unsubscribeFromPush}
 									disabled={isLoading}
 									variant="destructive"
+									className="text-xs sm:text-sm"
+									size="sm"
 								>
-									<BellOff className="mr-2 h-4 w-4" />
+									<BellOff className="mr-1 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
 									Disable
 								</Button>
 							</div>
@@ -189,15 +193,16 @@ export function PushNotificationManager() {
 					)}
 				</div>
 
-				<div className="text-xs text-muted-foreground space-y-2 pt-4 border-t">
+				<div className="text-xs text-muted-foreground space-y-2 pt-3 sm:pt-4 border-t">
 					<p className="font-semibold flex items-center gap-2">
 						<span>📱</span> How it works:
 					</p>
-					<ul className="space-y-1 ml-6 list-disc">
+					<ul className="space-y-1 ml-5 sm:ml-6 list-disc">
 						<li>Every task gets its own notification</li>
 						<li>Sent at 8:00 AM your local time</li>
 						<li>Works even when the app is closed</li>
-						<li>Available on iOS (16.4+), Android, and Desktop</li>
+						<li className="hidden sm:list-item">Available on iOS (16.4+), Android, and Desktop</li>
+						<li className="sm:hidden">iOS 16.4+, Android & Desktop</li>
 					</ul>
 				</div>
 			</CardContent>

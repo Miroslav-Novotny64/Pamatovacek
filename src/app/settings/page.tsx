@@ -9,17 +9,17 @@ export default function SettingsPage() {
 	return (
 		<>
 			<Navigation />
-			<main className="container mx-auto px-4 py-8 max-w-4xl">
-				<div className="space-y-6">
-					<div className="flex items-center gap-3">
-						<span className="text-5xl">🐝</span>
+			<main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8 max-w-4xl">
+				<div className="space-y-4 sm:space-y-6">
+					<div className="flex items-center gap-2 sm:gap-3">
+						<span className="text-3xl sm:text-4xl md:text-5xl">🐝</span>
 						<div>
-							<h1 className="text-4xl font-bold">Settings</h1>
-							<p className="text-muted-foreground">Manage your hive preferences</p>
+							<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Settings</h1>
+							<p className="text-xs sm:text-sm md:text-base text-muted-foreground">Manage your hive preferences</p>
 						</div>
 					</div>
 
-					<div className="grid gap-6">
+					<div className="grid gap-4 sm:gap-6">
 						{/* Push Notifications - Most Important */}
 						<PushNotificationManager />
 
